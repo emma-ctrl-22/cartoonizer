@@ -1,0 +1,16 @@
+services:
+- type: web
+  name: cartoonize-api
+  runtime: python
+  buildCommand: |
+    python -m venv cartoonenv
+    . cartoonenv/Scripts/activate
+    pip install -r requirements.txt
+  startCommand: |
+    . cartoonenv/Scripts/activate
+    gunicorn test_code.cartoonize:app
+  envVars:
+  - key: PYTHON_VERSION
+    value: 3.8.0
+  - key: VIRTUAL_ENV
+    value: cartoonenv
