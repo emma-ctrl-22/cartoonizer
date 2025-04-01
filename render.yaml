@@ -5,12 +5,15 @@ services:
   buildCommand: |
     python -m venv cartoonenv
     . cartoonenv/Scripts/activate
+    python -m pip install --upgrade pip
     pip install -r requirements.txt
   startCommand: |
     . cartoonenv/Scripts/activate
-    gunicorn test_code.cartoonize:app
+    gunicorn test_code.cartoonize:app --config gunicorn.conf.py
   envVars:
   - key: PYTHON_VERSION
     value: 3.8.0
   - key: VIRTUAL_ENV
     value: cartoonenv
+  - key: PORT
+    value: 10000
