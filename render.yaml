@@ -4,11 +4,11 @@ services:
   runtime: python
   buildCommand: |
     python -m venv cartoonenv
-    . cartoonenv/Scripts/activate
+    source cartoonenv/bin/activate
     python -m pip install --upgrade pip
     pip install -r requirements.txt
   startCommand: |
-    . cartoonenv/Scripts/activate
+    source cartoonenv/bin/activate
     gunicorn test_code.cartoonize:app --config gunicorn.conf.py
   envVars:
   - key: PYTHON_VERSION
